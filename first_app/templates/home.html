@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Form Data Display</title>
+  </head>
+  <body>
+    <form method="post">
+      {% csrf_token %}
+      
+      {% for field in form %}
+        {{ field.label }}: {{ field }}<br>
+      {% endfor %}
+
+      <button type="submit">Submit</button>
+    </form>
+
+    {% if form.is_valid %}
+      {% for name, value in form.cleaned_data.items %}
+        {{ name }}: {{ value }}<br>
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
